@@ -4,7 +4,8 @@
     <ul>
         {% for event in all_events %}
             <li>
-                <h2>{{event.name}} ({{event.date.strftime("%d %B %Y")}})</h2>
+                <h2>{{event.name}}</h2>
+                <h3>{{event.date.strftime("%A %d %B %Y")}}</h3>
                 {{event.description}}<br><br>
                 Attendees: {{event.num_guests}}<br>
                 Venue: {{event.room}}<br>
@@ -15,15 +16,15 @@
     <h1>Add an event</h1>
     <form action="/events" method="post">
         <label for="year">Date:</label>
-        <input type="date" name="date" id="date"><br><br>
+        <input type="date" name="date" id="date" required><br><br>
         <label for="name">Name:</label><br>
-        <input type="text" name="name" id="name"><br><br>
+        <input type="text" name="name" id="name" required><br><br>
         <label for="num_guests">Number of guests:</label><br>
-        <input type="text" name="num_guests" id="num_guests"><br><br>
+        <input type="number" name="num_guests" id="num_guests" required><br><br>
         <label for="room">Room:</label><br>
-        <input type="text" name="room" id="room"><br><br>
+        <input type="text" name="room" id="room" required><br><br>
         <label for="description">Description:</label><br>
-        <textarea name="description" id="description" rows="3" cols="50"></textarea><br><br>
+        <textarea name="description" id="description" rows="3" cols="50" required></textarea><br><br>
         <input type="submit" value="Add event">
     </form>
 
