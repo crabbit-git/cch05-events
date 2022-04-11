@@ -11,3 +11,10 @@ events = [event1, event2]
 
 def add_event(event):
     events.append(event)
+
+def identify_event(query):
+    return [event for event in events if query.casefold() in event.name.casefold()]
+
+def delete_event(event):
+    if event in events:
+        events.remove(event)

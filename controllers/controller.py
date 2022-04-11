@@ -4,7 +4,7 @@ from datetime import date
 
 from app import app
 from models.event import Event
-from models.event_list import events, add_event
+from models.event_list import events, add_event, identify_event, delete_event
 
 @app.route("/")
 def homepage_redir():
@@ -27,3 +27,12 @@ def create_event():
     new_event = Event(date = event_date, name = event_name, num_guests = event_guests, room = event_room, description = event_desc)
     add_event(new_event)
     return render_template("index.html", title="Home", all_events=events)
+
+@app.route("/events/delete", methods=["POST"])
+def delete_event_by_name():
+    name_query = request.form["name_query"]
+    if len(identify_event(name_query)) == 1:
+        delete_event(identify_event(name_query))
+        return redirect("/events")
+    else:
+        return redirect("/events")
